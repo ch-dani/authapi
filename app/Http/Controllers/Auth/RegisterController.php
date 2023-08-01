@@ -115,7 +115,8 @@ class RegisterController extends Controller
 
             // Generate a random 4-digit OTP
         $otp = random_int(1000, 9999);
-
+          $user->otp=$otp;
+        $user->save();
         $mail = new OTPVerificationMail($user->name,$user->email, $otp);
         $mail->build();
         \Mail::to($mail->getEmail())->send($mail);
@@ -192,6 +193,7 @@ class RegisterController extends Controller
             'otp' => 'required|digits:4',
         ]);
 
+
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
@@ -200,9 +202,8 @@ class RegisterController extends Controller
 
         // Check if the OTP matches
         if ($request->otp == $user->otp) {
-            // OTP matches, proceed with user registration
-            $user->verified = true;
-            $user->save();
+            \DB::select('UPDATE bsc_user set bsc_u_is_verified = 1 where bsc_u_id ='.$user->bsc_u_id);
+          
 
             return response()->json(['message' => 'OTP verified successfully.'], 200);
         }
@@ -249,4 +250,6 @@ class RegisterController extends Controller
 
         return response()->json($users);
     }
+
+
 }

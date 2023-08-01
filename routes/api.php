@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // User registration
 Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register');
 Route::post('/sendVerificationEmail', 'App\Http\Controllers\Auth\RegisterController@sendVerificationEmail');
+Route::post('/verify-otp', 'App\Http\Controllers\Auth\RegisterController@matchOTP');
 Route::get('/getUserRoles', 'App\Http\Controllers\Auth\RegisterController@getUserRoles');
 
 // User login
