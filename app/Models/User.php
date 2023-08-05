@@ -12,6 +12,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'bsc_user';
+protected $primaryKey='bsc_u_id';
 
     protected $fillable = [
         'name',
@@ -46,4 +47,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+	public function getAuthPassword(){
+		return $this->bsc_u_password;
+	}
 }

@@ -56,7 +56,7 @@ class RegisterController extends Controller
                 'parent_email' => ['string', 'email', 'max:255', 'unique:bsc_user'],
                 'email' => ['required','string', 'email', 'max:255','unique:bsc_user'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'ITS' => ['required', 'integer', 'min:6', 'unique:bsc_user', 'digits:6'],
+                'ITS' => ['required', 'integer', 'min:8', 'unique:bsc_user', 'digits:8'],
                 'DOB' => ['required', 'date'],
                 'gender' => ['required', 'string','min:1', 'max:1',],
                 'jamaat' => ['required', 'string'],

@@ -12,7 +12,7 @@ class LoginController extends Controller
     {
 
         $credentials = $request->only('email', 'password');
-
+//	$credentials=['email'=>$request->email,'bsc_u_password'=>$request->password];
     
         if (Auth::attempt($credentials)) {
             // if (Auth::check()) {
