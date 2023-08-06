@@ -38,7 +38,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'bsc_user',
+        ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'bsc_user',
         ],
     ],
 
@@ -60,7 +64,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'bsc_user' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
@@ -91,8 +95,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'bsc_user' => [
+            'provider' => 'bsc_user',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

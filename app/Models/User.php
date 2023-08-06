@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Sport;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'bsc_user';
-protected $primaryKey='bsc_u_id';
+    protected $primaryKey='bsc_u_id';
 
     protected $fillable = [
         'name',
@@ -41,6 +42,7 @@ protected $primaryKey='bsc_u_id';
     protected $hidden = [
         'password',
         'remember_token',
+        'bsc_u_password',
     ];
 
     protected $casts = [
@@ -51,4 +53,10 @@ protected $primaryKey='bsc_u_id';
 	public function getAuthPassword(){
 		return $this->bsc_u_password;
 	}
+
+    public function sports(){
+        return $this->belongsToMany(Sport::class, 'user_has_sports', 'bsc_user_id', 'bsc_sport_id');
+    }
+
+
 }
