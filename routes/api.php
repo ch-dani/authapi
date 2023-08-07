@@ -37,6 +37,9 @@ Route::group(["middleware"=>"auth:sanctum"],function(){
     Route::get('/get-event-teams/{id}', 'App\Http\Controllers\EventController@getEventTeam');
     Route::get('/get-all-sports', 'App\Http\Controllers\EventController@getAllSports');
     Route::get('/get-sport/{id}', 'App\Http\Controllers\EventController@getSport');
-    Route::get('/get-my-sports', 'App\Http\Controllers\EventController@getMySports');
     Route::get('/add-sport-to-cart/{id}', 'App\Http\Controllers\EventController@addSportInCart');
+    Route::get('/get-my-sports', 'App\Http\Controllers\EventController@getMySports');
+    Route::get('/get-my-cart', 'App\Http\Controllers\EventController@getMyCart');
+    Route::get('/get-sport-checkout', 'App\Http\Controllers\EventController@getMySportCheckout');
+    Route::get('/remove-from-cart/{id}', 'App\Http\Controllers\EventController@removeFromCart');
 });

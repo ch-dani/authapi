@@ -54,9 +54,16 @@ class User extends Authenticatable
 		return $this->bsc_u_password;
 	}
 
-    public function sports(){
-        return $this->belongsToMany(Sport::class, 'user_has_sports', 'bsc_user_id', 'bsc_sport_id');
+    public function subscribedSports(){
+        return $this->belongsToMany(Sport::class, 'bsc_user_has_sports', 'bsc_user_id', 'bsc_sport_id')->wherePivot('status', 'subscribed');
     }
+
+    public function cartSports(){
+        return $this->belongsToMany(Sport::class, 'bsc_user_has_sports', 'bsc_user_id', 'bsc_sport_id')->wherePivot('status', 'cart');
+        
+    }
+
+    
 
 
 }
